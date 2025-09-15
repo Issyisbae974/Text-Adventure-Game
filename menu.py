@@ -36,8 +36,10 @@ def main_menu():
         print("\n")
         direction = input(f"Which direction would you like to go? \nType {Color.bright_green_shortcut("'I'")} for inventory, {Color.bright_yellow_shortcut("'Q'")} for search room, {Color.bright_white_shortcut("'T'")} to interact with a character or {Color.bright_red_shortcut("'exit'")} to quit.\n>> ").strip().lower()
         
-        if direction == "exit":
+        if direction.lower() == "exit":
             print("Exiting game. . .")
+            time.sleep(1)
+            clear_screen()
             break
         if direction in current_room.linked_rooms:
             current_room = lock_check(current_room, direction, player_inventory)
