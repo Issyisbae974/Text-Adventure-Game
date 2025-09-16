@@ -6,7 +6,6 @@ from Map_Items import build_inventory, items
 from character import fight_check, open_actions
 from shortcuts import Color, clear_screen, type_text, enter
 from colorama import Fore, Style
-from rpginfo import introduction
 from Map_Characters import characters
 
 def keycheck(player_inventory):
