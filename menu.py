@@ -16,7 +16,7 @@ def keycheck(player_inventory):
         items["poison heart"]
     ]
     # returns True only if every key is in the inventory
-    return all(key in player_inventory for key in required_keys)
+    return all(heart in player_inventory for heart in required_keys)
 
 
 def main_menu():
