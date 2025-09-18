@@ -133,27 +133,27 @@ def fight_check(enemy, current_room, player_inventory):
         clear_screen()
         if enemy.key_weapon in player_inventory:
             Color.bright_green(
-                f"You killed the {enemy.name.lower()} with your {enemy.key_weapon.name.lower()}!"
+                f"You killed the {enemy.name} with your {enemy.key_weapon.name}!"
             )
             time.sleep(1)
-            print(f"\nYou got {enemy.drop.classcolor()(enemy.drop.name)}!")
+            print(f"\nYou got a {enemy.drop.classcolor()(enemy.drop.name)}!")
             player_inventory.remove(enemy.key_weapon)
             time.sleep(1)
             kill(enemy)
             player_inventory.append(enemy.drop)
         elif enemy.key_weapon == None:
             Color.bright_green(
-                f"You killed the {enemy.name.lower()} with your bare fists!"
+                f"You killed the {enemy.name} with your bare fists!"
             )
             time.sleep(1)
-            print(f"\nYou got a {enemy.drop.classcolor()(enemy.drop.name.lower())}!")
+            print(f"\nYou got a {enemy.drop.classcolor()(enemy.drop.name)}!")
             time.sleep(1)
             kill(enemy)
             player_inventory.append(enemy.drop)
         else:
             weapon_name = enemy.key_weapon if enemy.key_weapon else "weapon"
             Color.bright_red(
-                f"You were defeated in battle. Try to find a weapon to fight the {enemy.name.lower()}")
+                f"You were defeated in battle. Try to find a weapon to fight the {enemy.name}")
             time.sleep(1)
             return "lose"
 
