@@ -69,18 +69,28 @@ class Room():
     
     def required_key(self, key_item):
         self.key_item = key_item
-
+        
 def show_directions(current_room):
     Color.bright_blue("AVAILABLE DIRECTIONS:")
     print('-' * 20)
+
     direction_order = ["north", "east", "south", "west"]
     direction_lookup = {}
+
+    # Define this **before the loop**
+    has_directions = False
+
     for direction_name in direction_order:
         if direction_name in current_room.linked_rooms:
             Color.blue(f"{direction_name.capitalize()} - {current_room.linked_rooms[direction_name].name}")
             direction_lookup[direction_name[0].lower()] = direction_name.lower()
-    return direction_lookup
+            has_directions = True
 
+    # Check **after the loop**
+    if not has_directions:
+        Color.bright_white("There's nowhere to go!")
+
+    return direction_lookup
 def show_hint(current_room):
     for item in current_room.searchable_items:
         if item.get_hint() is None:
@@ -168,13 +178,13 @@ def lock_check(current_room, direction, player_inventory):
         if next_room.locked:
             if room_key(next_room, next_room.required_key, player_inventory) == True:
                     clear_screen()
-                    Color.bright_green("You unlocked the door with the correct key!")
+                    Color.bright_green("You unlocked the got through with the correct item!")
                     time.sleep(1)
                     current_room.linked_rooms[direction].locked = False
                     return next_room
             else:
                 clear_screen()
-                Color.bright_red("This room is locked. Try looking around for items that might help.")
+                Color.bright_red("This room is inaccessible. Try looking around for items that might help.")
                 time.sleep(1)
                 input(f"\nPress {enter()} to return. . .")
                 return current_room
@@ -190,6 +200,8 @@ def show_characters(current_room):
                 print('\n\n* ' + f"There is a happy {char.classcolor()(char.name).lower()} in the room!" + ' *')
             else:
                 print('\n\n* ' + f"There is a {char.classcolor()(char.name).lower()} in the room!" + ' *')
+
+
 
 if __name__ == "__main__":
     kitchen = Room("Kitchen")

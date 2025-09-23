@@ -42,6 +42,9 @@ def build_map():
     add_characters_to_room(fountain, ["fish"], characters)
     add_items_to_room(fountain, ["hedge trimmers"], items)
 
+    final_corridor = Room("Final Corridor")
+    final_corridor.set_description("An etheral and glowing white room")
+    add_characters_to_room(final_corridor, ["spirit"], characters)
 
     #build the map area
     path.link_room(gate, "north")
@@ -60,4 +63,16 @@ def build_map():
 
     backyard.link_room(fountain, "east")
 
-    return path
+    #dict
+    rooms = {
+        "path": path,
+        "gate": gate,
+        "hallway": hallway,
+        "kitchen": kitchen,
+        "dining_room": dining_room,
+        "backyard": backyard,
+        "shed": shed,
+        "fountain": fountain,
+        "final corridor": final_corridor
+    }
+    return path, rooms

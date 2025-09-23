@@ -14,10 +14,13 @@ items = {
     "metal polish" : Misc("Metal Polish"),
     "hedge trimmers" : Misc("Hedge Trimmers"),
 
+
     # Keys
     "poison heart" : Heart("Poison Heart"),
     "skeleton heart" : Heart("Skeleton Heart"),
-    "fish heart" : Heart("Fish Heart")
+    "fish heart" : Heart("Fish Heart"),
+    "celestial key" : Heart("Celestial Key"),
+
     }
 
 def build_inventory():

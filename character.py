@@ -67,19 +67,21 @@ class Char():
     
     def give_item(self, give_item):
         self.giveitem = give_item
-    
+
     def trade(self, player_inventory):
-        if trade_action(self, player_inventory) is True:
-            clear_screen()
-            print(f"You traded your {self.tradeitem.classcolor()(self.tradeitem.name)} for a {self.giveitem.classcolor()(self.giveitem.name)}!")
+    # Ensure tradeitem is always a list
+        trade_items = self.tradeitem
+        if not isinstance(trade_items, list):
+            trade_items = [trade_items]
+
+        if trade_action(self, player_inventory):
+            traded_names = ", ".join(item.classcolor()(item.name) for item in trade_items)
+            print(f"You traded your {traded_names} for a {self.giveitem.classcolor()(self.giveitem.name)}!")
             self.traded = True
-            
             time.sleep(1)
         else:
-            clear_screen()
-            print(f"Looks like you don't have the {self.tradeitem.classcolor()("item")} the {self.classcolor()(self.name)} would like. . .")
+            Color.bright_red(f"Looks like you don't have the required item/s to trade with {self.name}.")
             time.sleep(1)
-
 
     def actions(self):
         return {
@@ -121,12 +123,17 @@ def weapon_search(current_room):
             return None
 
 def trade_action(character, player_inventory):
-    if character.tradeitem in player_inventory:
-        player_inventory.remove(character.tradeitem)
+    trade_items = character.tradeitem
+    if not isinstance(trade_items, list):
+        trade_items = [trade_items]
+
+    if all(item in player_inventory for item in trade_items):
+        for item in trade_items:
+            player_inventory.remove(item)
         player_inventory.append(character.giveitem)
         return True
-    else:
-        return False
+    return False
+
         
 def fight_check(enemy, current_room, player_inventory):
     if isinstance(enemy, Enemy):

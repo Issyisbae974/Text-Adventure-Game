@@ -17,6 +17,8 @@ if __name__ == "__main__":
     input(f"\nPress {enter()} to continue. . .")
     start = True
     main_menu()
-
+    outro = "You have located all the hearts and made it through the eternal door, well done traveller!"
+    type_text(outro, delay=0.05, color_func=Color.bright_cyan_shortcut)
+    input(f"\nPress {enter()} to continue. . .")
 
             

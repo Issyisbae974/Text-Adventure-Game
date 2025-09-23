@@ -6,6 +6,7 @@ characters = {
     "spider" : Enemy("Spider", key_weapon=items["sword"], drop=items["poison heart"]),
     "skeleton king" : Char("Skeleton King", trade_item=items["jam"], give_item=items["skeleton heart"]),
     "fish" : Char("Fish", trade_item=items["fish food"], give_item=items["fish heart"]),
+    "spirit" : Char("Spirit", trade_item=[items["fish heart"], items["skeleton heart"], items["poison heart"]], give_item=items["celestial key"])
 }
 
 knight = characters["knight"]
@@ -23,3 +24,7 @@ skeleton_king.trade_dialogue("The skeleton king looks oddly satisified.")
 fish = characters["fish"]
 fish.set_dialogue("Blub blub. . .")
 fish.trade_dialogue("Blub blub. . .")
+
+spirit = characters["spirit"]
+spirit.set_dialogue("At last, my long awaited hearts")
+

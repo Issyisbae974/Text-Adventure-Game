@@ -21,7 +21,7 @@ def keycheck(player_inventory):
 def main_menu():
 
     clear_screen()
-    current_room = build_map()
+    current_room, rooms = build_map()
     player_inventory = build_inventory()
 
 
@@ -67,8 +67,9 @@ def main_menu():
             clear_screen()
 
         if keycheck(player_inventory) == True:
-            Color.bright_green("You beat the game!")
-            time.sleep(5)
+            current_room = rooms["final corridor"]
+
+        if items["celestial key"] in player_inventory:
             break
 
 if __name__ == "__main__":
